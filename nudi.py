@@ -12,7 +12,7 @@ nudi_answer = []
 #Extracts the filled cells from raw HTML
 class MyHTMLParser(HTMLParser):
     def handle_data(self, data):
-        if data != 'X':
+        if data != 'X' and data != '\n':
             nudi_answer.append(data+"\n")
 
 #Check if got the key file, and the input file as arguments
@@ -33,6 +33,7 @@ else:
                 print "Unable to read answer from the input file"
             elif len(nudi_key) != len(nudi_answer):
                 print "Incomplete answer!. Key length and answer length does not match"
+                print "Expected length:", len(nudi_key), "found: ", len(nudi_answer)
             else:
                 wrong = 0
                 for i in range(len(nudi_key)):
